@@ -8,7 +8,7 @@ body{
 }
 .container{
     background-color: white;
-    width: 25%;
+    width: 30%;
     min-width: 15rem;
     margin: 0 auto;
     position: absolute;
@@ -23,11 +23,7 @@ body{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
-
-
 }
-
 .all-tasks-lable{
     margin-left: 1.5rem;
     font-size: 1.5rem;
@@ -36,4 +32,22 @@ body{
 .remain-tasks-lable{
     margin-right: 1.9rem;
     font-weight: 400;
+}
+
+.tasks{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-size: 1.3rem;
+
+    
+}
+.tasks button{
+    margin-left: 10rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: white;
+    font-weight: 600;
+}
+.task{
+    margin-top: 1rem;
 }
