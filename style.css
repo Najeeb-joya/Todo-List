@@ -6,6 +6,13 @@
 body{
     background-color: rgb(224, 80, 80);
 }
+
+button{
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: white;
+    font-weight: 600;
+}
 .container{
     background-color: white;
     width: 30%;
@@ -38,16 +45,30 @@ body{
     margin-top: 1rem;
     margin-left: 1rem;
     font-size: 1.3rem;
-
-    
-}
-.tasks button{
-    margin-left: 10rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-    background-color: white;
-    font-weight: 600;
 }
 .task{
     margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1rem;
 }
+
+.add-tasks{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+
+}
+.add-task{
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+
+}
+.add-task-btn{
+    margin-right: 1rem;
+    width: 3.7rem;
+
+}
+
