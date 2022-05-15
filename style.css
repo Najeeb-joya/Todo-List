@@ -13,10 +13,10 @@ button{
     background-color: white;
     font-weight: 600;
 }
-.container{
+.tasks-container{
     background-color: white;
     width: 30%;
-    min-width: 15rem;
+    min-width: 18rem;
     margin: 0 auto;
     position: absolute;
     top: 50%;
@@ -63,6 +63,7 @@ button{
 }
 .add-task{
     padding: 0.5rem;
+    width: 70%;
     border-radius: 0.6rem;
 
 }
