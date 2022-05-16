@@ -1,6 +1,8 @@
 const add_task_btn = document.querySelector('.add-task-btn');
 const tasks = document.querySelector('.tasks');
 
+let delete_btn; 
+
 const add_task = (task_value) => {
 
     let task_div = document.createElement('div');
@@ -14,9 +16,9 @@ const add_task = (task_value) => {
     let label = document.createElement('label');
     label.textContent = " " + task_value;
 
-    let button = document.createElement('button');
-    button.textContent = "Delete";
-    button.setAttribute('class','task-delete');
+    delete_btn = document.createElement('button');
+    delete_btn.textContent = "Delete";
+    delete_btn.setAttribute('class','task-delete');
 
     tasks.appendChild(task_div);
     task_div.appendChild(span);
@@ -24,7 +26,13 @@ const add_task = (task_value) => {
     span.appendChild(label);
 
     
-    task_div.appendChild(button);
+    task_div.appendChild(delete_btn);
+
+
+    delete_btn.addEventListener('click',e => {
+        console.log("Task Deleted");
+        task_div.remove();
+    });
 
 }
 
@@ -35,3 +43,4 @@ add_task_btn.addEventListener('click',e => {
 
     task_input.value = "";
 });
+
