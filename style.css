@@ -13,10 +13,11 @@ button{
     background-color: white;
     font-weight: 600;
     cursor: pointer;
+    height: 2rem;
 }
 .tasks-container{
     background-color: white;
-    width: 30%;
+    width: 32%;
     min-width: 18rem;
     margin: 0 auto;
     margin-top: 10rem;
@@ -47,6 +48,7 @@ button{
 }
 .task{
     margin-top: 1rem;
+    font-size: 1.3rem;
     display: flex;
     justify-content: space-between;
     margin-right: 1rem;
@@ -60,16 +62,19 @@ button{
     justify-content: space-between;
 
 }
-.add-task{
+.task-input{
     padding: 0.5rem;
     width: 70%;
     border-radius: 0.6rem;
+    font-size: 1.2rem;
+    font-weight: 300;
 
 
 }
 .add-task-btn{
     margin-right: 1rem;
     width: 3.7rem;
+    height: 2.5rem;
 
 }
 
