@@ -76,7 +76,21 @@ const add_task = (task_value) => {
             label.style.textDecoration="none";
             remain_tasks_num_inc_dec("inc");
         }
-    })
+    });
+    label.addEventListener('click',e=>{
+        console.log("Label Clicked");
+        console.log(label.style.textDecoration);
+        if(label.style.textDecoration === "none" || label.style.textDecoration === ""){
+            label.style.textDecoration = "line-through";
+            remain_tasks_num_inc_dec("dec");
+            checkbox.checked=true;
+        }else{
+            label.style.textDecoration = "none";
+            remain_tasks_num_inc_dec("inc");
+            checkbox.checked=false;
+        }
+        
+    });
 
 }
 
