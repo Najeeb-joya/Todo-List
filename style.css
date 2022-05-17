@@ -55,6 +55,8 @@ button{
 }
 label{
     cursor: pointer;
+    margin-left: 0.6rem;
+
 }
 
 .add-tasks{
