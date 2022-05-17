@@ -101,3 +101,14 @@ add_task_btn.addEventListener('click',e => {
     task_input.value = "";
 });
 
+
+const random = Math.round(Math.random() * 100);
+console.log(random);
+fetch('https://type.fit/api/quotes')
+.then(response =>{
+    return response.json();
+})
+.then(data =>{
+    document.querySelector('.qoute').textContent = data[random].text;
+    document.querySelector('.author').textContent = data[random].author;
+})
