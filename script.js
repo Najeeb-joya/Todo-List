@@ -34,15 +34,22 @@ const add_task = (task_value) => {
         task_div.remove();
     });
 
+    checkbox.addEventListener('change', e =>{
+        if(e.target.checked){
+            label.style.textDecoration = "line-through";
+        }
+        else{
+            label.style.textDecoration="none";
+        }
+    })
+
 }
 
 add_task_btn.addEventListener('click',e => {
     const task_input = document.querySelector('.task-input');
-    if(task_input.value){
+    if(task_input.value){ // check if input task has value
         add_task(task_input.value);
     }
-    
-
     task_input.value = "";
 });
 
