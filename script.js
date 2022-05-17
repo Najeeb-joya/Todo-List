@@ -1,7 +1,35 @@
 const add_task_btn = document.querySelector('.add-task-btn');
 const tasks = document.querySelector('.tasks');
 
-let delete_btn; 
+let delete_btn, tasks_number = 0, remain_tasks_number=0; 
+
+let all_task_num = document.querySelector('.all-task-num');
+let remain_task_num = document.querySelector('.remain-task-num');
+
+all_task_num.textContent = tasks_number; 
+remain_task_num.textContent = remain_tasks_number;
+
+const tasks_num_inc_dec = (inc, dec)=>{
+    
+    if(inc==="inc"){
+        console.log("Function Called");
+        tasks_number++;
+        all_task_num.textContent = tasks_number;
+    }else{
+        tasks_number--;
+        all_task_num.textContent = tasks_number;
+    }
+}
+
+const remain_tasks_num_inc_dec = (inc, dec)=>{
+    if(inc === "inc"){
+        remain_tasks_number++;
+        remain_task_num.textContent = remain_tasks_number;
+    }else{
+        remain_tasks_number--;
+        remain_task_num.textContent = remain_tasks_number;
+    }
+}
 
 const add_task = (task_value) => {
 
@@ -32,14 +60,21 @@ const add_task = (task_value) => {
     delete_btn.addEventListener('click',e => {
         console.log("Task Deleted");
         task_div.remove();
+
+        tasks_num_inc_dec("dec");
+        remain_tasks_num_inc_dec("dec");
+        
     });
 
     checkbox.addEventListener('change', e =>{
         if(e.target.checked){
             label.style.textDecoration = "line-through";
+            remain_tasks_num_inc_dec("dec");
+
         }
         else{
             label.style.textDecoration="none";
+            remain_tasks_num_inc_dec("inc");
         }
     })
 
@@ -49,6 +84,9 @@ add_task_btn.addEventListener('click',e => {
     const task_input = document.querySelector('.task-input');
     if(task_input.value){ // check if input task has value
         add_task(task_input.value);
+        tasks_num_inc_dec("inc");
+        remain_tasks_num_inc_dec("inc");
+        
     }
     task_input.value = "";
 });
