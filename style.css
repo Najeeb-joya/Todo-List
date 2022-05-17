@@ -81,6 +81,7 @@ button{
 .quotes{
     margin: 3rem auto;
     width: 70%;
+    min-width: 18rem;
     color: rgb(255, 255, 255);
     font-size: 1.5rem;
     text-align: center;
@@ -103,4 +104,5 @@ button{
 .socials a {
     text-decoration: none;
     margin-left: 0.8rem;
+
 }
