@@ -12,7 +12,6 @@ remain_task_num.textContent = remain_tasks_number;
 const tasks_num_inc_dec = (inc, dec)=>{
     
     if(inc==="inc"){
-        console.log("Function Called");
         tasks_number++;
         all_task_num.textContent = tasks_number;
     }else{
@@ -58,8 +57,7 @@ const add_task = (task_value) => {
 
 
     delete_btn.addEventListener('click',e => {
-        console.log("Task Deleted");
-        task_div.remove();
+        task_div.remove(); // remove the task when user click on Delete button
 
         tasks_num_inc_dec("dec");
         remain_tasks_num_inc_dec("dec");
@@ -78,8 +76,6 @@ const add_task = (task_value) => {
         }
     });
     label.addEventListener('click',e=>{
-        console.log("Label Clicked");
-        console.log(label.style.textDecoration);
         if(label.style.textDecoration === "none" || label.style.textDecoration === ""){
             label.style.textDecoration = "line-through";
             remain_tasks_num_inc_dec("dec");
