@@ -42,7 +42,7 @@ const add_task = (task_value) => {
     checkbox.type = "checkbox";
 
     let label = document.createElement('label');
-    label.textContent = " " + task_value;
+    label.textContent = task_value;
 
     delete_btn = document.createElement('button');
     delete_btn.textContent = "Delete";
