@@ -38,8 +38,10 @@ const add_task = (task_value) => {
 
 add_task_btn.addEventListener('click',e => {
     const task_input = document.querySelector('.task-input');
-    console.log("Clicked");
-    add_task(task_input.value);
+    if(task_input.value){
+        add_task(task_input.value);
+    }
+    
 
     task_input.value = "";
 });
