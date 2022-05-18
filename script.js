@@ -102,13 +102,15 @@ add_task_btn.addEventListener('click',e => {
 });
 
 
-const random = Math.round(Math.random() * 100);
-console.log(random);
-fetch('https://type.fit/api/quotes')
+//const random = Math.round(Math.random() * 100);
+//fetch('https://type.fit/api/quotes')
+fetch('https://api.quotable.io/random')
 .then(response =>{
     return response.json();
 })
 .then(data =>{
-    document.querySelector('.qoute').textContent = data[random].text;
-    document.querySelector('.author').textContent = data[random].author;
+    document.querySelector('.qoute').textContent = data.content;
+    document.querySelector('.author').textContent = data.author;
+    console.log(data);
 })
+
