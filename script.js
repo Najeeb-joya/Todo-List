@@ -107,14 +107,16 @@ add_task_btn.addEventListener('click',e => {
 
 
 
-//const random = Math.round(Math.random() * 100);
+
+const getQuote = ()=>{
+        //const random = Math.round(Math.random() * 100);
 //fetch('https://type.fit/api/quotes')
 fetch('https://api.quotable.io/random')
 .then(response =>{
     return response.json();
 })
 .then(data =>{
-    quote.textContent = data.content;
+    quote.textContent = "\" " + data.content + "\"";
     author.textContent = data.author;
 
     
@@ -126,5 +128,11 @@ fetch('https://api.quotable.io/random')
     author.textContent = localStorage.getItem('author');
     
 });
+};
+
+quote.textContent = "\" " + localStorage.getItem('quote') + "\"";
+author.textContent = localStorage.getItem('author');
+setInterval(getQuote,10000);
+
 
 
