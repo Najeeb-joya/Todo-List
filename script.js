@@ -111,28 +111,33 @@ add_task_btn.addEventListener('click',e => {
 const getQuote = ()=>{
         //const random = Math.round(Math.random() * 100);
 //fetch('https://type.fit/api/quotes')
-fetch('https://api.quotable.io/random')
-.then(response =>{
+const request = fetch('https://api.quotable.io/random');
+request.then(response =>{
     return response.json();
 })
 .then(data =>{
-    quote.textContent = "\" " + data.content + "\"";
-    author.textContent = data.author;
-
+    console.log(data.length, "outside of IF");
+    if(data.length <= 75){
+        localStorage.setItem('quote', data.content);
+        localStorage.setItem('author',data.author);
     
-    localStorage.setItem('quote', data.content);
-    localStorage.setItem('author',data.author);
+        quote.textContent = "\"" + data.content + "\"";
+        author.textContent = data.author;
+    }else{
+        quote.textContent = "\"" + localStorage.getItem('quote') + "\"";
+        author.textContent = localStorage.getItem('author');
+    }
 })
 .catch(erro =>{
     quote.textContent = localStorage.getItem('quote');
-    author.textContent = localStorage.getItem('author');
-    
+    author.textContent = localStorage.getItem('author'); 
 });
 };
 
-quote.textContent = "\" " + localStorage.getItem('quote') + "\"";
+quote.textContent = "\"" + localStorage.getItem('quote') + "\"";
 author.textContent = localStorage.getItem('author');
-setInterval(getQuote,10000);
+
+setInterval(getQuote,20000);
 
 
 
