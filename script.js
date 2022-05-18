@@ -134,6 +134,13 @@ request.then(response =>{
 });
 };
 
+if(localStorage.length === 0 ){ // we store a quote with its author to display on the screen when user open the page
+                                // for the first time and there is nothing already saved on the localStorage.
+                                
+    localStorage.setItem('quote', 'We all need people who will give us feedback. That’s how we improve.');
+    localStorage.setItem('author',"Bill Gates");
+}
+
 quote.textContent = "\"" + localStorage.getItem('quote') + "\"";
 author.textContent = localStorage.getItem('author');
 
