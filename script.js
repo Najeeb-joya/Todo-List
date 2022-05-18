@@ -111,6 +111,14 @@ fetch('https://api.quotable.io/random')
 .then(data =>{
     document.querySelector('.qoute').textContent = data.content;
     document.querySelector('.author').textContent = data.author;
-    console.log(data);
+
+    
+    localStorage.setItem('quote', data.content);
+    localStorage.setItem('author',data.author);
 })
+.catch(erro =>{
+    document.querySelector('.qoute').textContent = localStorage.getItem('quote');
+    document.querySelector('.author').textContent = localStorage.getItem('author');
+    
+});
 
