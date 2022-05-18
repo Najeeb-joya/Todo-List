@@ -6,6 +6,10 @@ let delete_btn, tasks_number = 0, remain_tasks_number=0;
 let all_task_num = document.querySelector('.all-task-num');
 let remain_task_num = document.querySelector('.remain-task-num');
 
+let quote = document.querySelector('.qoute'); 
+let author = document.querySelector('.author');
+
+
 all_task_num.textContent = tasks_number; 
 remain_task_num.textContent = remain_tasks_number;
 
@@ -102,6 +106,7 @@ add_task_btn.addEventListener('click',e => {
 });
 
 
+
 //const random = Math.round(Math.random() * 100);
 //fetch('https://type.fit/api/quotes')
 fetch('https://api.quotable.io/random')
@@ -109,16 +114,17 @@ fetch('https://api.quotable.io/random')
     return response.json();
 })
 .then(data =>{
-    document.querySelector('.qoute').textContent = data.content;
-    document.querySelector('.author').textContent = data.author;
+    quote.textContent = data.content;
+    author.textContent = data.author;
 
     
     localStorage.setItem('quote', data.content);
     localStorage.setItem('author',data.author);
 })
 .catch(erro =>{
-    document.querySelector('.qoute').textContent = localStorage.getItem('quote');
-    document.querySelector('.author').textContent = localStorage.getItem('author');
+    quote.textContent = localStorage.getItem('quote');
+    author.textContent = localStorage.getItem('author');
     
 });
+
 
