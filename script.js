@@ -26,6 +26,8 @@ const tasks_num_inc_dec = (inc, dec)=>{
     } 
     if(tasks_number > 2){
         search_tasks.style.display = "block";
+    }else{
+        search_tasks.style.display = "none";  
     }
 }
 
