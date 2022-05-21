@@ -9,6 +9,8 @@ let remain_task_num = document.querySelector('.remain-task-num');
 let quote = document.querySelector('.qoute'); 
 let author = document.querySelector('.author');
 
+let search_tasks=document.querySelector('.search-tasks'); 
+
 
 all_task_num.textContent = tasks_number; 
 remain_task_num.textContent = remain_tasks_number;
@@ -21,6 +23,9 @@ const tasks_num_inc_dec = (inc, dec)=>{
     }else{
         tasks_number--;
         all_task_num.textContent = tasks_number;
+    } 
+    if(tasks_number > 2){
+        search_tasks.style.display = "block";
     }
 }
 
