@@ -49,9 +49,8 @@ button{
 .search-tasks{
     text-align: center;
     position: relative;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     display: none;
-    
 }
 .search-input{
     width: 100%;
