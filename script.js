@@ -69,9 +69,18 @@ const add_task = (task_value) => {
 
     delete_btn.addEventListener('click',e => {
         task_div.remove(); // remove the task when user click on Delete button
+        console.log("All Task Number", tasks_number);
+        console.log("Remaining Task Number",remain_tasks_number);
 
+        if(tasks_number === remain_tasks_number){
+            console.log("if caLLED");
+            remain_tasks_num_inc_dec("dec");
+        }
         tasks_num_inc_dec("dec");
-        remain_tasks_num_inc_dec("dec");
+        
+        
+        
+        
         
     });
 
