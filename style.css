@@ -19,6 +19,15 @@ button{
     color: white;
 }
 
+.weather
+{
+    width: 10%;
+    height: 60px;
+    border: 1px solid white;
+    position: absolute;
+    top: 1%;
+    right: 3%;
+}
 
 .tasks-container{
     background-color: white;
