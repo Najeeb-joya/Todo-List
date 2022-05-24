@@ -57,7 +57,6 @@ const add_task = (task_value) => {
         </div>
     `;
         tasks.innerHTML += html;
-
 }
 
 add_task_form.addEventListener('submit', e=>{
@@ -88,25 +87,26 @@ add_task_form.addEventListener('submit', e=>{
 // add event listener for Tasks Dive
 tasks.addEventListener('click', e=>{    
     console.log("tasks event fired");
+
     if(e.target.classList.contains('task-delete')){
             e.target.parentElement.remove();
             if(tasks_number === remain_tasks_number){
-                console.log("if caLLED");
                 remain_tasks_num_inc_dec("dec");
             }
             tasks_num_inc_dec("dec");
     }
 
     // check if the checkbox is checked 
-    if(e.target.checked){
+    if(e.target.classList.contains('check-value')){
         console.log("Checked Now");
         if(e.target.checked){
-            e.target.style.textDecoration = "line-through";
+            e.target.nextElementSibling.style.textDecoration = "line-through";
             remain_tasks_num_inc_dec("dec");
 
         }
         else{
-            e.target.style.textDecoration="none";
+            console.log("Come Here");
+            e.target.nextElementSibling.style.textDecoration="none";
             remain_tasks_num_inc_dec("inc");
         }
     }
