@@ -115,8 +115,8 @@ label{
     
    
 }
-.add-task-btn{
-    /* margin-right: 1rem; */
+/* .add-task-btn{
+    
     margin-bottom: 0.6rem;
     border: none;
     width: 5rem;
@@ -128,7 +128,7 @@ label{
     border-radius: 1rem;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-}
+} */
 
 .quotes{
     margin: 3rem auto;
