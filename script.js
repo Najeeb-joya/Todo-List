@@ -1,4 +1,5 @@
 const add_task_btn = document.querySelector('.add-task-btn');
+const add_task_form = document.querySelector('.add-tasks');
 const tasks = document.querySelector('.tasks');
 
 let tasks_number = 0, remain_tasks_number=0; 
@@ -58,8 +59,8 @@ const add_task = (task_value) => {
 
 }
 
-// handle event listener of add task button
-add_task_btn.addEventListener('click',e => {
+add_task_form.addEventListener('submit', e=>{
+    e.preventDefault();
     const task_input = document.querySelector('.task-input');
     if(task_input.value){ // check if input task has value
         add_task(task_input.value);
@@ -68,8 +69,19 @@ add_task_btn.addEventListener('click',e => {
         remain_tasks_num_inc_dec("inc");
         
     }
-    
 });
+// handle event listener of add task button
+// add_task_btn.addEventListener('click',e => {
+//     const task_input = document.querySelector('.task-input');
+//     if(task_input.value){ // check if input task has value
+//         add_task(task_input.value);
+//         task_input.value = "";
+//         tasks_num_inc_dec("inc");
+//         remain_tasks_num_inc_dec("inc");
+        
+//     }
+    
+// });
 
 
 // add event listener for Tasks Dive
