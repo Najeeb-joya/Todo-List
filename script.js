@@ -27,9 +27,10 @@ const tasks_num_inc_dec = (inc, dec)=>{
         all_task_num.textContent = tasks_number;
     } 
     if(tasks_number > 2){
-        search_tasks.style.display = "block";
+        search_tasks.style.display="block";
+        search_tasks.style.visibility = "visible";
     }else{
-        search_tasks.style.display = "none";  
+        search_tasks.style.visibility = "hidden";  
     }
 }
 
