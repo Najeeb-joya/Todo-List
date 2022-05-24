@@ -15,6 +15,7 @@ let search_tasks=document.querySelector('.search-tasks');
 all_task_num.textContent = tasks_number; 
 remain_task_num.textContent = remain_tasks_number;
 
+// function to increase or decrease the all tasks number
 const tasks_num_inc_dec = (inc, dec)=>{
     
     if(inc==="inc"){
@@ -31,6 +32,7 @@ const tasks_num_inc_dec = (inc, dec)=>{
     }
 }
 
+// function to increase or decrease the remaining tasks number 
 const remain_tasks_num_inc_dec = (inc, dec)=>{
     if(inc === "inc"){
         remain_tasks_number++;
@@ -41,11 +43,7 @@ const remain_tasks_num_inc_dec = (inc, dec)=>{
     }
 }
 
-
-
-let counter = 1;
-
-
+// function for adding new tasks 
 const add_task = (task_value) => {
     let html = `
         <div class="task"> 
@@ -60,7 +58,7 @@ const add_task = (task_value) => {
 
 }
 
-
+// handle event listener of add task button
 add_task_btn.addEventListener('click',e => {
     const task_input = document.querySelector('.task-input');
     if(task_input.value){ // check if input task has value
@@ -85,6 +83,8 @@ tasks.addEventListener('click', e=>{
             }
             tasks_num_inc_dec("dec");
     }
+
+    // check if the checkbox is checked 
     if(e.target.checked){
         console.log("Checked Now");
         if(e.target.checked){
@@ -98,6 +98,7 @@ tasks.addEventListener('click', e=>{
         }
     }
 
+    // task label event handler 
     if(e.target.classList.contains('label')){
 
         if(e.target.style.textDecoration === "none" || e.target.style.textDecoration === ""){
