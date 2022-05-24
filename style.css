@@ -59,7 +59,7 @@ button{
     text-align: center;
     position: relative;
     margin-bottom: 2rem;
-    display: none;
+    visibility: hidden;
 }
 .search-input{
     width: 100%;
