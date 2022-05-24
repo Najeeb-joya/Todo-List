@@ -1,7 +1,7 @@
 const add_task_btn = document.querySelector('.add-task-btn');
 const tasks = document.querySelector('.tasks');
 
-let delete_btn, tasks_number = 0, remain_tasks_number=0; 
+let delete_btn,checkbox,label, tasks_number = 0, remain_tasks_number=0; 
 
 let all_task_num = document.querySelector('.all-task-num');
 let remain_task_num = document.querySelector('.remain-task-num');
@@ -41,84 +41,102 @@ const remain_tasks_num_inc_dec = (inc, dec)=>{
     }
 }
 
+
+
+let counter = 1;
+
+
 const add_task = (task_value) => {
+    let html = `
+        <div class="task"> 
+            <span>
+                <input type="checkbox" class="check-value">
+                <label>${task_value}</label>
+            </span>
+           <button class="task-delete">Delete</button>
+        </div>
+    `;
+        tasks.innerHTML += html;
+   
+    delete_btn = document.querySelector('.task-delete');
+    checkbox = document.querySelector('.check-value');
+    label = document.querySelector('label');
+    console.log(delete_btn,counter);
+    counter++;
 
-    let task_div = document.createElement('div');
-    task_div.setAttribute('class','task');
+//     //checkbox event listner 
+//     checkbox.addEventListener('change', e =>{
+//         if(e.target.checked){
+//             label.style.textDecoration = "line-through";
+//             remain_tasks_num_inc_dec("dec");
 
-    let span = document.createElement('span');
-
-    let checkbox = document.createElement('input');
-    checkbox.type = "checkbox";
-
-    let label = document.createElement('label');
-    label.textContent = task_value;
-
-    delete_btn = document.createElement('button');
-    delete_btn.textContent = "Delete";
-    delete_btn.setAttribute('class','task-delete');
-
-    tasks.appendChild(task_div);
-    task_div.appendChild(span);
-    span.appendChild(checkbox);
-    span.appendChild(label);
-
+//         }
+//         else{
+//             label.style.textDecoration="none";
+//             remain_tasks_num_inc_dec("inc");
+//         }
+//     });
     
-    task_div.appendChild(delete_btn);
 
+//     label.addEventListener('click',e=>{
+//         if(label.style.textDecoration === "none" || label.style.textDecoration === ""){
+//             label.style.textDecoration = "line-through";
+//             remain_tasks_num_inc_dec("dec");
+//             checkbox.checked=true;
+//         }else{
+//             label.style.textDecoration = "none";
+//             remain_tasks_num_inc_dec("inc");
+//             checkbox.checked=false;
+//         }
+//     });
 
-    delete_btn.addEventListener('click',e => {
-        task_div.remove(); // remove the task when user click on Delete button
-        console.log("All Task Number", tasks_number);
-        console.log("Remaining Task Number",remain_tasks_number);
-
-        if(tasks_number === remain_tasks_number){
-            console.log("if caLLED");
-            remain_tasks_num_inc_dec("dec");
-        }
-        tasks_num_inc_dec("dec");
-        
-        
-        
-        
-        
-    });
-
-    checkbox.addEventListener('change', e =>{
-        if(e.target.checked){
-            label.style.textDecoration = "line-through";
-            remain_tasks_num_inc_dec("dec");
-
-        }
-        else{
-            label.style.textDecoration="none";
-            remain_tasks_num_inc_dec("inc");
-        }
-    });
-    label.addEventListener('click',e=>{
-        if(label.style.textDecoration === "none" || label.style.textDecoration === ""){
-            label.style.textDecoration = "line-through";
-            remain_tasks_num_inc_dec("dec");
-            checkbox.checked=true;
-        }else{
-            label.style.textDecoration = "none";
-            remain_tasks_num_inc_dec("inc");
-            checkbox.checked=false;
-        }
-        
-    });
+//
 
 }
+
 
 add_task_btn.addEventListener('click',e => {
     const task_input = document.querySelector('.task-input');
     if(task_input.value){ // check if input task has value
         add_task(task_input.value);
+        task_input.value = "";
         tasks_num_inc_dec("inc");
         remain_tasks_num_inc_dec("inc");
         
     }
-    task_input.value = "";
+    
+});
+
+tasks.addEventListener('click', e=>{    
+    console.log("tasks event fired");
+    if(e.target.classList.contains('task-delete')){
+            e.target.parentElement.remove();
+            if(tasks_number === remain_tasks_number){
+                console.log("if caLLED");
+                remain_tasks_num_inc_dec("dec");
+            }
+            tasks_num_inc_dec("dec");
+    }
+
+
+
+
+
+    // delete_btn.addEventListener('click',e => {
+    //     task_div.remove(); // remove the task when user click on Delete button
+    //     console.log("All Task Number", tasks_number);
+    //     console.log("Remaining Task Number",remain_tasks_number);
+
+    //     if(tasks_number === remain_tasks_number){
+    //         console.log("if caLLED");
+    //         remain_tasks_num_inc_dec("dec");
+    //     }
+    //     tasks_num_inc_dec("dec");
+        
+    // });
+
+
+
 });
 
 
