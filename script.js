@@ -1,7 +1,7 @@
 const add_task_btn = document.querySelector('.add-task-btn');
 const tasks = document.querySelector('.tasks');
 
-let delete_btn,checkbox,label, tasks_number = 0, remain_tasks_number=0; 
+let tasks_number = 0, remain_tasks_number=0; 
 
 let all_task_num = document.querySelector('.all-task-num');
 let remain_task_num = document.querySelector('.remain-task-num');
@@ -58,34 +58,6 @@ const add_task = (task_value) => {
     `;
         tasks.innerHTML += html;
 
-    // //checkbox event listner 
-    // checkbox.addEventListener('change', e =>{
-    //     if(e.target.checked){
-    //         label.style.textDecoration = "line-through";
-    //         remain_tasks_num_inc_dec("dec");
-
-    //     }
-    //     else{
-    //         label.style.textDecoration="none";
-    //         remain_tasks_num_inc_dec("inc");
-    //     }
-    // });
-    
-
-//     label.addEventListener('click',e=>{
-//         if(label.style.textDecoration === "none" || label.style.textDecoration === ""){
-//             label.style.textDecoration = "line-through";
-//             remain_tasks_num_inc_dec("dec");
-//             checkbox.checked=true;
-//         }else{
-//             label.style.textDecoration = "none";
-//             remain_tasks_num_inc_dec("inc");
-//             checkbox.checked=false;
-//         }
-//     });
-
-//
-
 }
 
 
@@ -136,13 +108,8 @@ tasks.addEventListener('click', e=>{
                         e.target.style.textDecoration = "none";
                         remain_tasks_num_inc_dec("inc");
                         e.target.previousElementSibling.checked=false;
-                    }
-        
+                    }   
     }
-
-
-
-
 });
 
 
