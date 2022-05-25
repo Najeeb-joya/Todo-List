@@ -59,22 +59,24 @@ const add_task = (task_value) => {
     `;
         tasks.innerHTML += html;
 }
+
+const task_search = () => {
+    let todos =  document.querySelectorAll('.label');
+    // change the node list to array using spread
+   let todo_array = [...todos];
+   todo_array.filter(todo => !todo.textContent.includes(search_input.value))
+   .forEach(ftodo => ftodo.parentElement.parentElement.style.display="none");
+
+   todo_array.filter(todo => todo.textContent.includes(search_input.value))
+  .forEach(ftodo => ftodo.parentElement.parentElement.style.display="flex");
+}
+
+
 //event listener for searching task
 search_input.addEventListener('keyup',e=>{
-     let todos =  document.querySelectorAll('.label');
-      // change the node list to array using spread
-     let todo_array = [...todos]
-     .filter(todo => !todo.textContent.includes(search_input.value))
-     .forEach(ftodo => ftodo.parentElement.parentElement.style.display="none");
-
-    todo_array = [...todos].filter(todo => todo.textContent.includes(search_input.value))
-    .forEach(ftodo => ftodo.parentElement.parentElement.style.display="flex");
-
-     
-    
-     
-
+     task_search();
 });
+
 
 add_task_form.addEventListener('submit', e=>{
     e.preventDefault();
