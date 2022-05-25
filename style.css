@@ -22,6 +22,10 @@ button{
     background-color: rgb(224, 80, 80);
     color: white;
 }
+input[type ='checkbox']{
+    
+    accent-color: rgb(224, 80, 80); ;
+}
 
 .weather
 {
