@@ -12,6 +12,7 @@ let author = document.querySelector('.author');
 
 let search_tasks=document.querySelector('.search-tasks'); 
 
+let search_input= document.querySelector('.search-input');
 
 all_task_num.textContent = tasks_number; 
 remain_task_num.textContent = remain_tasks_number;
@@ -58,6 +59,14 @@ const add_task = (task_value) => {
     `;
         tasks.innerHTML += html;
 }
+//event listener for searching task
+search_input.addEventListener('keyup',e=>{
+       let val =  document.querySelectorAll('.label');
+       val.forEach(value =>{
+           console.log(value.textContent);
+       });
+
+})
 
 add_task_form.addEventListener('submit', e=>{
     e.preventDefault();
