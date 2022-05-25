@@ -62,16 +62,19 @@ const add_task = (task_value) => {
 //event listener for searching task
 search_input.addEventListener('keyup',e=>{
      let todos =  document.querySelectorAll('.label');
-     let todo_array = [...todos];  // change the node list to array using spread 
-     
-     todo_array.filter((todo)=>{
-         if(todo.textContent.includes(search_input.value)){
-            console.log(todo.textContent);
-         }
-            
-     });
+      // change the node list to array using spread
+     let todo_array = [...todos]
+     .filter(todo => !todo.textContent.includes(search_input.value))
+     .forEach(ftodo => ftodo.parentElement.parentElement.style.display="none");
 
-})
+    todo_array = [...todos].filter(todo => todo.textContent.includes(search_input.value))
+    .forEach(ftodo => ftodo.parentElement.parentElement.style.display="flex");
+
+     
+    
+     
+
+});
 
 add_task_form.addEventListener('submit', e=>{
     e.preventDefault();
