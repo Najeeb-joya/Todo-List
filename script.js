@@ -61,10 +61,15 @@ const add_task = (task_value) => {
 }
 //event listener for searching task
 search_input.addEventListener('keyup',e=>{
-       let val =  document.querySelectorAll('.label');
-       val.forEach(value =>{
-           console.log(value.textContent);
-       });
+     let todos =  document.querySelectorAll('.label');
+     let todo_array = [...todos];  // change the node list to array using spread 
+     
+     todo_array.filter((todo)=>{
+         if(todo.textContent.includes(search_input.value)){
+            console.log(todo.textContent);
+         }
+            
+     });
 
 })
 
