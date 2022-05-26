@@ -170,8 +170,13 @@ request.then(response =>{
     }
 })
 .catch(erro =>{
+    if(localStorage.length > 0){
     quote.textContent = localStorage.getItem('quote');
     author.textContent = localStorage.getItem('author'); 
+    }else{
+        quote.textContent = "\"Nothing of value comes fast or easy; Drips of water can one day break a stone.\"";
+        author.textContent = "Unkonw";
+    }
 });
 };
 
