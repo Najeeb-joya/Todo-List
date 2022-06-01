@@ -83,11 +83,13 @@ add_task_form.addEventListener('submit', e=>{
     const task_input = document.querySelector('.task-input');
     if(task_input.value){ // check if input task has value
         add_task(task_input.value);
+        localStorage.setItem(localStorage.length, task_input.value); // save the inserted tasks on localhStorage
         task_input.value = "";
         tasks_num_inc_dec("inc");
         remain_tasks_num_inc_dec("inc");
         
         window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+        
     }
 });
 // handle event listener of add task button
@@ -170,6 +172,7 @@ request.then(response =>{
     }
 })
 .catch(erro =>{
+    console.log("Promise did not resolve");
     if(localStorage.length > 0){
     quote.textContent = localStorage.getItem('quote');
     author.textContent = localStorage.getItem('author'); 
@@ -179,7 +182,6 @@ request.then(response =>{
     }
 });
 };
-
 window.addEventListener('load', getQuote);
 
 quote.textContent = "\"" + localStorage.getItem('quote') + "\"";
