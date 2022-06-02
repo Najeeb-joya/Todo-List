@@ -78,18 +78,22 @@ search_input.addEventListener('keyup',e=>{
 });
 
 
+let tasks_array = []; 
 add_task_form.addEventListener('submit', e=>{
     e.preventDefault();
     const task_input = document.querySelector('.task-input');
     if(task_input.value){ // check if input task has value
         add_task(task_input.value);
-        localStorage.setItem(localStorage.length.toString(), task_input.value); // save the inserted tasks on localhStorage
+     //   localStorage.setItem(localStorage.length.toString(), task_input.value); // save the inserted tasks on localhStorage
+        tasks_array.push(task_input.value);
+        localStorage.setItem('taks', JSON.stringify(tasks_array));
         task_input.value = "";
         tasks_num_inc_dec("inc");
         remain_tasks_num_inc_dec("inc");
         
         window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         
+        console.log(tasks_array);
     }
 });
 // handle event listener of add task button
@@ -112,7 +116,7 @@ tasks.addEventListener('click', e=>{
 
     if(e.target.classList.contains('task-delete')){
             e.target.parentElement.remove();
-            localStorage.removeItem(localStorage.length);
+            localStorage.removeItem(localStorage.lengt);
             if(tasks_number === remain_tasks_number){
                 remain_tasks_num_inc_dec("dec");
             }
