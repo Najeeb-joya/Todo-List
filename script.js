@@ -72,6 +72,7 @@ const task_search = () => {
 }
 
 
+
 //event listener for searching task
 search_input.addEventListener('keyup',e=>{
      task_search();
@@ -93,9 +94,9 @@ add_task_form.addEventListener('submit', e=>{
         
         window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         
-        console.log(tasks_array);
     }
 });
+
 // handle event listener of add task button
 // add_task_btn.addEventListener('click',e => {
 //     const task_input = document.querySelector('.task-input');
@@ -116,11 +117,23 @@ tasks.addEventListener('click', e=>{
 
     if(e.target.classList.contains('task-delete')){
             e.target.parentElement.remove();
-            localStorage.removeItem(localStorage.lengt);
+
+            let stored_tasks = localStorage.getItem('taks');
+            let edited_task = JSON.parse(stored_tasks);
+            if(edited_task.length === 1){
+                    localStorage.clear();
+                
+            }else {
+                localStorage.setItem('taks', JSON.stringify(edited_task.slice(0,-1)));
+
+            }
+            
+        
             if(tasks_number === remain_tasks_number){
                 remain_tasks_num_inc_dec("dec");
             }
             tasks_num_inc_dec("dec");
+        
     }
 
     // check if the checkbox is checked 
