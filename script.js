@@ -71,6 +71,30 @@ const task_search = () => {
   .forEach(ftodo => ftodo.parentElement.parentElement.style.display="flex");
 }
 
+// change the task status on localStorage
+const isComplete = (status, target) =>{
+    let stored_taskss = JSON.parse(localStorage.getItem("tasks"));
+    if(status  === "checked"){   
+        stored_taskss.forEach(val => {
+            if(val.title == target.nextElementSibling.textContent){
+                val.isComplete = true;
+            }
+
+        });
+
+        localStorage.setItem('tasks', JSON.stringify(stored_taskss));
+    }else{
+        stored_taskss.forEach(val => {
+            if(val.title == target.nextElementSibling.textContent){
+                val.isComplete = false;
+        
+            }
+        });
+        localStorage.setItem('tasks', JSON.stringify(stored_taskss))
+
+    }
+
+}
 
 
 //event listener for searching task
@@ -122,17 +146,10 @@ tasks.addEventListener('click', e=>{
     if(e.target.classList.contains('task-delete')){
             e.target.parentElement.remove();
 
-            let stored_tasks = localStorage.getItem('taks');
-            let edited_task = JSON.parse(stored_tasks);
-            if(edited_task.length === 1){
-                    localStorage.clear();
-                
-            }else {
-                localStorage.setItem('taks', JSON.stringify(edited_task.slice(0,-1)));
-
-            }
-            
         
+            let stored_tasks = JSON.parse(localStorage.getItem('tasks'));
+            localStorage.setItem('tasks', JSON.stringify(stored_tasks.slice(0,-1)));
+
             if(tasks_number === remain_tasks_number){
                 remain_tasks_num_inc_dec("dec");
             }
@@ -142,15 +159,19 @@ tasks.addEventListener('click', e=>{
 
     // check if the checkbox is checked 
     if(e.target.classList.contains('check-value')){
-        console.log("Checked Now");
+       
+
         if(e.target.checked){
             e.target.nextElementSibling.style.textDecoration = "line-through";
+            //console.log(JSON.parse(localStorage.getItem('tasks')));
+            isComplete("checked", e.target)
+
             remain_tasks_num_inc_dec("dec");
 
         }
         else{
-            console.log("Come Here");
             e.target.nextElementSibling.style.textDecoration="none";
+            isComplete("notchecked", e.target);
             remain_tasks_num_inc_dec("inc");
         }
     }
