@@ -86,8 +86,12 @@ add_task_form.addEventListener('submit', e=>{
     if(task_input.value){ // check if input task has value
         add_task(task_input.value);
      //   localStorage.setItem(localStorage.length.toString(), task_input.value); // save the inserted tasks on localhStorage
-        tasks_array.push(task_input.value);
-        localStorage.setItem('taks', JSON.stringify(tasks_array));
+     const todos = {
+         title:task_input.value,
+         isComplete:false
+     }
+        tasks_array.push(todos);
+        localStorage.setItem('tasks', JSON.stringify(tasks_array));
         task_input.value = "";
         tasks_num_inc_dec("inc");
         remain_tasks_num_inc_dec("inc");
