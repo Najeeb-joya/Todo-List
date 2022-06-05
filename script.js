@@ -91,9 +91,7 @@ const isComplete = (status, target) =>{
             }
         });
         localStorage.setItem('tasks', JSON.stringify(stored_taskss))
-
     }
-
 }
 
 
@@ -141,15 +139,17 @@ add_task_form.addEventListener('submit', e=>{
 
 // add event listener for Tasks Dive
 tasks.addEventListener('click', e=>{    
-    console.log("tasks event fired");
-
     if(e.target.classList.contains('task-delete')){
             e.target.parentElement.remove();
 
         
             let stored_tasks = JSON.parse(localStorage.getItem('tasks'));
-            localStorage.setItem('tasks', JSON.stringify(stored_tasks.slice(0,-1)));
-
+            if(stored_tasks.length > 1){
+                localStorage.setItem('tasks', JSON.stringify(stored_tasks.slice(0,-1)));
+            }else {
+                localStorage.removeItem('tasks');
+            }
+            
             if(tasks_number === remain_tasks_number){
                 remain_tasks_num_inc_dec("dec");
             }
