@@ -46,8 +46,23 @@ const remain_tasks_num_inc_dec = (inc, dec)=>{
     }
 }
 
+window.addEventListener('load', e =>{
+    if(localStorage.getItem('tasks')){
+          let stored_task = JSON.parse(localStorage.getItem('tasks')); 
+          stored_task.forEach(val =>{
+              add_task(val.title);
+          });     
+
+    }else{
+        console.log("There is not any Task on localStorage");
+    }
+});
+
+ 
+
 // function for adding new tasks 
 const add_task = (task_value) => {
+    
     let html = `
         <div class="task"> 
             <span>
@@ -144,11 +159,11 @@ tasks.addEventListener('click', e=>{
 
         
             let stored_tasks = JSON.parse(localStorage.getItem('tasks'));
-            if(stored_tasks.length > 1){
+            if(stored_tasks.length > 1){ 
                 localStorage.setItem('tasks', JSON.stringify(stored_tasks.slice(0,-1)));
             }else {
                 localStorage.removeItem('tasks');
-                tasks_array = []; 
+                tasks_array = []; // empty the tasks_array when all tasks remove from local storage
             }
             
             if(tasks_number === remain_tasks_number){
