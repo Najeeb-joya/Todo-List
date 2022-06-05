@@ -148,6 +148,7 @@ tasks.addEventListener('click', e=>{
                 localStorage.setItem('tasks', JSON.stringify(stored_tasks.slice(0,-1)));
             }else {
                 localStorage.removeItem('tasks');
+                tasks_array = []; 
             }
             
             if(tasks_number === remain_tasks_number){
