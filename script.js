@@ -48,13 +48,13 @@ const remain_tasks_num_inc_dec = (inc, dec)=>{
 }
 
 // function for adding new tasks 
-const add_task = (task_value, className = "label") => {
+const add_task = (task_value) => {
     
     let html = `
         <div class="task"> 
             <span>
                 <input type="checkbox" class="check-value">
-                <label class = "${className}">${task_value}</label>
+                <label class = "label">${task_value}</label>
             </span>
            <button class="task-delete">Delete</button>
         </div>
@@ -81,15 +81,12 @@ const isComplete = (status, target) =>{
             if(val.title == target.nextElementSibling.textContent){
                 val.isComplete = true;
             }
-
         });
-
         localStorage.setItem('tasks', JSON.stringify(stored_taskss));
     }else{
         stored_taskss.forEach(val => {
             if(val.title == target.nextElementSibling.textContent){
                 val.isComplete = false;
-        
             }
         });
         localStorage.setItem('tasks', JSON.stringify(stored_taskss))
@@ -101,25 +98,23 @@ window.addEventListener('load', e =>{
    
     if(localStorage.getItem('tasks')){
           tasks_array = JSON.parse(localStorage.getItem('tasks')); 
-
           tasks_array.forEach(val =>{
-              if(val.isComplete === true){
-                add_task(val.title,"label1");
-                document.querySelectorAll('.label1').forEach(lbl =>{
-                    lbl.style.textDecoration = "line-through"
-                   console.log(lbl.previousElementSibling); 
-                });
+
+
+                  let html = `
+                            <div class="task"> 
+                                 <span>
+                                    <input type="checkbox" class="check-value" ${val.isComplete ? "checked":""}>
+                                    <label class = "label" ${val.isComplete ? "style='text-decoration:line-through'":"style='text-decoration:none'"
+                                }>${val.title}</label>
+                                </span>
+                            <button class="task-delete">Delete</button>
+                            </div>
+                        `;
+        tasks.innerHTML += html;
                 
-              }else {
-                  add_task(val.title);
-              }
-          });     
-
-    }
-    
-});
-
-
+        });     
+}});
 
 
 //event listener for searching task
@@ -146,7 +141,7 @@ add_task_form.addEventListener('submit', e=>{
         remain_tasks_num_inc_dec("inc");
         
         window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
-        
+    
     }
 });
 
