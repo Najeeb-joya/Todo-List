@@ -201,15 +201,30 @@ tasks.addEventListener('click', e=>{
 
     // task label event handler 
     if(e.target.classList.contains('label')){
-
+        let getTasks=  JSON.parse(localStorage.getItem("tasks"))
         if(e.target.style.textDecoration === "none" || e.target.style.textDecoration === ""){
                         e.target.style.textDecoration = "line-through";
                         remain_tasks_num_inc_dec("dec");
                         e.target.previousElementSibling.checked=true;
+                     
+                        
+                        getTasks.forEach(task => {
+                            if(task.title == e.target.textContent){
+                                task.isComplete = true;
+                            localStorage.setItem('tasks',JSON.stringify(getTasks)); 
+                            }
+                        });
                     }else{
                         e.target.style.textDecoration = "none";
                         remain_tasks_num_inc_dec("inc");
                         e.target.previousElementSibling.checked=false;
+
+                        getTasks.forEach(task => {
+                            if(task.title == e.target.textContent){
+                                task.isComplete = false;
+                            localStorage.setItem('tasks',JSON.stringify(getTasks)); 
+                            }
+                        });
                     }   
     }
 });
