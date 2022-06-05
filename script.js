@@ -16,6 +16,7 @@ let search_input= document.querySelector('.search-input');
 
 all_task_num.textContent = tasks_number; 
 remain_task_num.textContent = remain_tasks_number;
+let tasks_array = []; 
 
 // function to increase or decrease the all tasks number
 const tasks_num_inc_dec = (inc, dec)=>{
@@ -46,28 +47,14 @@ const remain_tasks_num_inc_dec = (inc, dec)=>{
     }
 }
 
-window.addEventListener('load', e =>{
-    if(localStorage.getItem('tasks')){
-          let stored_task = JSON.parse(localStorage.getItem('tasks')); 
-          stored_task.forEach(val =>{
-              add_task(val.title);
-          });     
-
-    }else{
-        console.log("There is not any Task on localStorage");
-    }
-});
-
- 
-
 // function for adding new tasks 
-const add_task = (task_value) => {
+const add_task = (task_value, className = "label") => {
     
     let html = `
         <div class="task"> 
             <span>
                 <input type="checkbox" class="check-value">
-                <label class = "label">${task_value}</label>
+                <label class = "${className}">${task_value}</label>
             </span>
            <button class="task-delete">Delete</button>
         </div>
@@ -109,6 +96,24 @@ const isComplete = (status, target) =>{
     }
 }
 
+// onload event Lister to call add_task function when page is loaded 
+window.addEventListener('load', e =>{
+   
+    if(localStorage.getItem('tasks')){
+          tasks_array = JSON.parse(localStorage.getItem('tasks')); 
+          tasks_array.forEach(val =>{
+              add_task(val.title);
+              if(val.isComplete === true){
+                document.querySelector('.label').style.textDecoration = "line-through";
+              }
+          });     
+
+    }
+    
+});
+
+
+
 
 //event listener for searching task
 search_input.addEventListener('keyup',e=>{
@@ -116,7 +121,7 @@ search_input.addEventListener('keyup',e=>{
 });
 
 
-let tasks_array = []; 
+
 add_task_form.addEventListener('submit', e=>{
     e.preventDefault();
     const task_input = document.querySelector('.task-input');
