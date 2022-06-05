@@ -101,10 +101,17 @@ window.addEventListener('load', e =>{
    
     if(localStorage.getItem('tasks')){
           tasks_array = JSON.parse(localStorage.getItem('tasks')); 
+
           tasks_array.forEach(val =>{
-              add_task(val.title);
               if(val.isComplete === true){
-                document.querySelector('.label').style.textDecoration = "line-through";
+                add_task(val.title,"label1");
+                document.querySelectorAll('.label1').forEach(lbl =>{
+                    lbl.style.textDecoration = "line-through"
+                   console.log(lbl.previousElementSibling); 
+                });
+                
+              }else {
+                  add_task(val.title);
               }
           });     
 
