@@ -19,9 +19,10 @@ remain_task_num.textContent = remain_tasks_number;
 let tasks_array = []; 
 
 const taskCount = ()=>{
-    let getTasks = localStorage.getItem('tasks');
-    all_task_num.textContent = JSON.parse(getTasks).length;
-    remain_task_num.textContent = JSON.parse(getTasks).length;
+    let getTasks = JSON.parse(localStorage.getItem('tasks'));
+    all_task_num.textContent = getTasks.length;
+    
+    remain_task_num.textContent = getTasks.length;
 }
 
 
@@ -142,11 +143,15 @@ add_task_form.addEventListener('submit', e=>{
 tasks.addEventListener('click', e=>{    
     if(e.target.classList.contains('task-delete')){
             e.target.parentElement.remove();
-
-        
             let stored_tasks = JSON.parse(localStorage.getItem('tasks'));
-            if(stored_tasks.length > 1){ 
-                localStorage.setItem('tasks', JSON.stringify(stored_tasks.slice(0,-1)));
+
+            if(stored_tasks.length > 1){
+                let new_stored_array = stored_tasks.splice(-1,1);
+                tasks_array = stored_tasks;
+                localStorage.setItem('tasks', JSON.stringify(stored_tasks));
+                
+                
+
             }else {
                 localStorage.removeItem('tasks');
                 tasks_array = []; // empty the tasks_array when all tasks remove from local storage
@@ -169,13 +174,13 @@ tasks.addEventListener('click', e=>{
             //console.log(JSON.parse(localStorage.getItem('tasks')));
             isComplete("checked", e.target)
 
-            remain_tasks_num_inc_dec("dec");
+            //remain_tasks_num_inc_dec("dec");
 
         }
         else{
             e.target.nextElementSibling.style.textDecoration="none";
             isComplete("notchecked", e.target);
-            remain_tasks_num_inc_dec("inc");
+           // remain_tasks_num_inc_dec("inc");
         }
     }
 
@@ -184,7 +189,7 @@ tasks.addEventListener('click', e=>{
         let getTasks=  JSON.parse(localStorage.getItem("tasks"))
         if(e.target.style.textDecoration === "none" || e.target.style.textDecoration === ""){
                         e.target.style.textDecoration = "line-through";
-                        remain_tasks_num_inc_dec("dec");
+                        //remain_tasks_num_inc_dec("dec");
                         e.target.previousElementSibling.checked=true;
                      
                         
@@ -196,7 +201,7 @@ tasks.addEventListener('click', e=>{
                         });
                     }else{
                         e.target.style.textDecoration = "none";
-                        remain_tasks_num_inc_dec("inc");
+                       // remain_tasks_num_inc_dec("inc");
                         e.target.previousElementSibling.checked=false;
 
                         getTasks.forEach(task => {
