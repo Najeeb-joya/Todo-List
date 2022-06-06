@@ -18,34 +18,12 @@ all_task_num.textContent = tasks_number;
 remain_task_num.textContent = remain_tasks_number;
 let tasks_array = []; 
 
-// function to increase or decrease the all tasks number
-const tasks_num_inc_dec = (inc, dec)=>{
-    
-    if(inc==="inc"){
-        tasks_number++;
-        all_task_num.textContent = tasks_number;
-    }else{
-        tasks_number--;
-        all_task_num.textContent = tasks_number;
-    } 
-    if(tasks_number > 2){
-        search_tasks.style.display="block";
-        search_tasks.style.visibility = "visible";
-    }else{
-        search_tasks.style.visibility = "hidden";  
-    }
+const taskCount = ()=>{
+    let getTasks = localStorage.getItem('tasks');
+    all_task_num.textContent = JSON.parse(getTasks).length;
+    remain_task_num.textContent = JSON.parse(getTasks).length;
 }
 
-// function to increase or decrease the remaining tasks number 
-const remain_tasks_num_inc_dec = (inc, dec)=>{
-    if(inc === "inc"){
-        remain_tasks_number++;
-        remain_task_num.textContent = remain_tasks_number;
-    }else{
-        remain_tasks_number--;
-        remain_task_num.textContent = remain_tasks_number;
-    }
-}
 
 // function for adding new tasks 
 const add_task = (task_value) => {
@@ -112,7 +90,8 @@ window.addEventListener('load', e =>{
                             </div>
                         `;
         tasks.innerHTML += html;
-                
+
+        taskCount();        
         });     
 }});
 
@@ -137,8 +116,8 @@ add_task_form.addEventListener('submit', e=>{
         tasks_array.push(todos);
         localStorage.setItem('tasks', JSON.stringify(tasks_array));
         task_input.value = "";
-        tasks_num_inc_dec("inc");
-        remain_tasks_num_inc_dec("inc");
+        taskCount(); 
+       // remain_tasks_num_inc_dec("inc");
         
         window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
     
@@ -173,11 +152,12 @@ tasks.addEventListener('click', e=>{
                 tasks_array = []; // empty the tasks_array when all tasks remove from local storage
             }
             
-            if(tasks_number === remain_tasks_number){
-                remain_tasks_num_inc_dec("dec");
-            }
-            tasks_num_inc_dec("dec");
-        
+            // if(tasks_number === remain_tasks_number){
+            //     remain_tasks_num_inc_dec("dec");
+            // }
+            //tasks_num_inc_dec("dec");
+            taskCount();
+            
     }
 
     // check if the checkbox is checked 
