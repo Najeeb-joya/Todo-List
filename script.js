@@ -165,8 +165,6 @@ tasks.addEventListener('click', e=>{
 
     // check if the checkbox is checked 
     if(e.target.classList.contains('check-value')){
-       
-
         if(e.target.checked){
             e.target.nextElementSibling.style.textDecoration = "line-through";
             isComplete("checked", e.target)
@@ -189,20 +187,18 @@ tasks.addEventListener('click', e=>{
         if(e.target.style.textDecoration === "none" || e.target.style.textDecoration === ""){
                         e.target.style.textDecoration = "line-through";
                         //remain_tasks_num_inc_dec("dec");
-                        taskCount();
-                        e.target.previousElementSibling.checked=true;
-                     
                         
+                        e.target.previousElementSibling.checked=true;
                         getTasks.forEach(task => {
                             if(task.title == e.target.textContent){
                                 task.isComplete = true;
                             localStorage.setItem('tasks',JSON.stringify(getTasks)); 
                             }
                         });
+                        taskCount();
                     }else{
                         e.target.style.textDecoration = "none";
                        // remain_tasks_num_inc_dec("inc");
-                       taskCount();
                         e.target.previousElementSibling.checked=false;
 
                         getTasks.forEach(task => {
@@ -211,6 +207,7 @@ tasks.addEventListener('click', e=>{
                             localStorage.setItem('tasks',JSON.stringify(getTasks)); 
                             }
                         });
+                        taskCount();
                     }   
     }
 });
