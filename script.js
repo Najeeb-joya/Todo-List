@@ -6,6 +6,7 @@ let tasks_number = 0, remain_tasks_number=0;
 
 let all_task_num = document.querySelector('.all-task-num');
 let remain_task_num = document.querySelector('.remain-task-num');
+let compelet_task_num = document.querySelector('.complete-task-num');
 
 let quote = document.querySelector('.qoute'); 
 let author = document.querySelector('.author');
@@ -18,11 +19,21 @@ all_task_num.textContent = tasks_number;
 remain_task_num.textContent = remain_tasks_number;
 let tasks_array = []; 
 
-const taskCount = ()=>{
+
+
+
+// count the all tasks and remaining taks
+const taskCount = (status = "inc")=>{
     let getTasks = JSON.parse(localStorage.getItem('tasks'));
     all_task_num.textContent = getTasks.length;
-    
-    remain_task_num.textContent = getTasks.length;
+
+    let complete_tasks_array = getTasks.filter(task =>{
+        return task.isComplete === true;
+    })
+    console.log(complete_tasks_array.length);
+    compelet_task_num.textContent = complete_tasks_array.length;
+
+    remain_task_num.textContent = tasks_array.length - compelet_task_num.textContent; 
 }
 
 
@@ -142,26 +153,13 @@ add_task_form.addEventListener('submit', e=>{
 // add event listener for Tasks Dive
 tasks.addEventListener('click', e=>{    
     if(e.target.classList.contains('task-delete')){
-            e.target.parentElement.remove();
-            let stored_tasks = JSON.parse(localStorage.getItem('tasks'));
-
-            if(stored_tasks.length > 1){
-                let new_stored_array = stored_tasks.splice(-1,1);
-                tasks_array = stored_tasks;
-                localStorage.setItem('tasks', JSON.stringify(stored_tasks));
-                
-                
-
-            }else {
-                localStorage.removeItem('tasks');
-                tasks_array = []; // empty the tasks_array when all tasks remove from local storage
-            }
             
-            // if(tasks_number === remain_tasks_number){
-            //     remain_tasks_num_inc_dec("dec");
-            // }
-            //tasks_num_inc_dec("dec");
+            let stored_tasks = JSON.parse(localStorage.getItem('tasks'));
+            let new_stored_array = stored_tasks.splice(-1,1);
+            tasks_array = stored_tasks;
+            localStorage.setItem('tasks', JSON.stringify(stored_tasks));
             taskCount();
+            e.target.parentElement.remove();
             
     }
 
@@ -171,16 +169,17 @@ tasks.addEventListener('click', e=>{
 
         if(e.target.checked){
             e.target.nextElementSibling.style.textDecoration = "line-through";
-            //console.log(JSON.parse(localStorage.getItem('tasks')));
             isComplete("checked", e.target)
 
             //remain_tasks_num_inc_dec("dec");
+            taskCount();
 
         }
         else{
             e.target.nextElementSibling.style.textDecoration="none";
             isComplete("notchecked", e.target);
            // remain_tasks_num_inc_dec("inc");
+           taskCount();
         }
     }
 
@@ -190,6 +189,7 @@ tasks.addEventListener('click', e=>{
         if(e.target.style.textDecoration === "none" || e.target.style.textDecoration === ""){
                         e.target.style.textDecoration = "line-through";
                         //remain_tasks_num_inc_dec("dec");
+                        taskCount();
                         e.target.previousElementSibling.checked=true;
                      
                         
@@ -202,6 +202,7 @@ tasks.addEventListener('click', e=>{
                     }else{
                         e.target.style.textDecoration = "none";
                        // remain_tasks_num_inc_dec("inc");
+                       taskCount();
                         e.target.previousElementSibling.checked=false;
 
                         getTasks.forEach(task => {
