@@ -244,7 +244,10 @@ const getQuote = () => {
          }
       });
 };
-window.addEventListener('load', getQuote);
+window.addEventListener('load', ()=>{
+   getQuote();
+   getWeather();
+});
 
 quote.textContent = "\"" + localStorage.getItem('quote') + "\"";
 author.textContent = localStorage.getItem('author');
@@ -259,10 +262,10 @@ const getWeather =()=>{
    .then(response =>{
       return response.json();
    }).then(data =>{
-      console.log(data);
+      console.log(data.location.name);
    })
    .catch(err => {
       console.log(err);
    });
   }
-  getWeather();
+  
