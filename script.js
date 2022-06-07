@@ -259,22 +259,53 @@ const getWeather =()=>{
    let weatherIcon = document.querySelector('.weather-icon1');
    let cityName = document.querySelector('.city');
    let temperature = document.querySelector('.temp-num');
-   const apiKey = '264f9c460b468a22a8d50f93ebbd7275'; 
+   //const apiKey = '264f9c460b468a22a8d50f93ebbd7275'; 
+   const apiKey = "235e5901710717d10e54947b472fdd27";
+   let lat, lon; 
    const city = "Kabul"
-   fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
+   fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=235e5901710717d10e54947b472fdd27`)
    .then(response =>{
+   
       return response.json();
-   }).then(data =>{
-     // console.log(data.location.name);
-     console.log(data);
-     console.log(weatherIcon);
-     weatherIcon.setAttribute('src', data.current.weather_icons[0]);
-     cityName.textContent = data.location.name;
-     temperature.textContent = data.current.temperature;
-      
    })
-   .catch(err => {
-      console.log(err);
-   });
+   .then(data =>{
+      console.log(data);
+      lat = data[0].lat;
+      lon = data[0].lon;
+      return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=235e5901710717d10e54947b472fdd27`);
+   }).then(res =>{
+      return res.json();
+   })
+   .then(data =>{
+      console.log(data);
+      weatherIcon.setAttribute('src', `http://openweathermap.org/img/w/${data.weather[0].icon}.png`);
+      cityName.textContent = data.name;
+      temperature.textContent = data.main.temp;
+   })
+   .catch(err =>{
+      console.log("Promise did not resolve" + err);
+   })
+
+
+
+
+
+
+
+   // fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
+   // .then(response =>{
+   //    return response.json();
+   // }).then(data =>{
+   //   // console.log(data.location.name);
+   //   console.log(data);
+   //   console.log(weatherIcon);
+   //   weatherIcon.setAttribute('src', data.current.weather_icons[0]);
+   //   cityName.textContent = data.location.name;
+   //   temperature.textContent = data.current.temperature;
+      
+   // })
+   // .catch(err => {
+   //    console.log(err);
+   // });
   }
   
