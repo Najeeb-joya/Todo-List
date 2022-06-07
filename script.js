@@ -222,7 +222,6 @@ const getQuote = () => {
          return response.json();
       })
       .then(data => {
-         console.log(data.length, "outside of IF");
          if (data.length <= 75) {
             localStorage.setItem('quote', data.content);
             localStorage.setItem('author', data.author);
@@ -249,5 +248,21 @@ window.addEventListener('load', getQuote);
 
 quote.textContent = "\"" + localStorage.getItem('quote') + "\"";
 author.textContent = localStorage.getItem('author');
-
 setInterval(getQuote, 20000);
+
+
+
+const getWeather =()=>{
+   const apiKey = '264f9c460b468a22a8d50f93ebbd7275'; 
+   const city = "Kabul"
+   fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
+   .then(response =>{
+      return response.json();
+   }).then(data =>{
+      console.log(data);
+   })
+   .catch(err => {
+      console.log(err);
+   });
+  }
+  getWeather();
