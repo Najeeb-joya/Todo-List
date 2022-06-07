@@ -258,7 +258,7 @@ setInterval(getQuote, 20000);
 const getWeather =()=>{
    let weatherIcon = document.querySelector('.weather-icon1');
    let cityName = document.querySelector('.city');
-   let temperature = document.querySelector('.temp');
+   let temperature = document.querySelector('.temp-num');
    const apiKey = '264f9c460b468a22a8d50f93ebbd7275'; 
    const city = "Kabul"
    fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
