@@ -256,13 +256,22 @@ setInterval(getQuote, 20000);
 
 
 const getWeather =()=>{
+   let weatherIcon = document.querySelector('.weather-icon1');
+   let cityName = document.querySelector('.city');
+   let temperature = document.querySelector('.temp');
    const apiKey = '264f9c460b468a22a8d50f93ebbd7275'; 
    const city = "Kabul"
    fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
    .then(response =>{
       return response.json();
    }).then(data =>{
-      console.log(data.location.name);
+     // console.log(data.location.name);
+     console.log(data);
+     console.log(weatherIcon);
+     weatherIcon.setAttribute('src', data.current.weather_icons[0]);
+     cityName.textContent = data.location.name;
+     temperature.textContent = data.current.temperature;
+      
    })
    .catch(err => {
       console.log(err);
