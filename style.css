@@ -36,6 +36,16 @@ input[type ='checkbox']{
     top: 1%;
     right: 3%;
 }
+.weather-icon{
+    width: 80%;
+    height: 100%;
+    border:1px solid black;
+    text-align: center;
+}
+.weather-icon img{
+    width: 60%;
+    height: 60px;
+}
 
 .tasks-container{
     background-color: white;
