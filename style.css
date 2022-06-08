@@ -191,3 +191,9 @@ label{
     display: inline-block;
     margin-left: -0.2rem;
 }
+.footer{
+    
+    height: 15vh;
+    background-color: black;
+    margin-top: 10.49rem;
+}
