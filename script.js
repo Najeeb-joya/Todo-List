@@ -256,6 +256,7 @@ setInterval(getQuote, 20000);
 
 
 const getWeather =()=>{
+   let weatherContainer = document.querySelector('.weather');
    let weatherIcon = document.querySelector('.weather-icon1');
    let cityName = document.querySelector('.city');
    let temperature = document.querySelector('.temp-num');
@@ -279,17 +280,13 @@ const getWeather =()=>{
    .then(data =>{
       console.log(data);
       weatherIcon.setAttribute('src', `http://openweathermap.org/img/w/${data.weather[0].icon}.png`);
+      weatherContainer.style.visibility = "visible"
       cityName.textContent = data.name;
       temperature.textContent = data.main.temp;
    })
    .catch(err =>{
       console.log("Promise did not resolve" + err);
    })
-
-
-
-
-
 
 
    // fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
