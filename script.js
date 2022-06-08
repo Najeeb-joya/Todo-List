@@ -306,3 +306,16 @@ const getWeather =()=>{
    // });
   }
   
+
+  const getColor = ()=>  {
+   let body = document.querySelector('body');
+   const colorPicker = new iro.ColorPicker("#color-picker", {
+      width:130, color:"#fff"
+   });
+
+   colorPicker.on("color:change", function(color){
+      body.style.backgroundColor = color.hexString;
+   })
+  }
+
+  getColor();
