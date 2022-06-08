@@ -40,6 +40,7 @@ input[type ='checkbox']{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    visibility: hidden;
 }
 
 .weather-icon img{
