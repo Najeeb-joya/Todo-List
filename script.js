@@ -129,11 +129,11 @@ add_task_form.addEventListener('submit', e => {
       taskCount();
       // remain_tasks_num_inc_dec("inc");
 
-      window.scrollTo({
-         left: 0,
-         top: document.body.scrollHeight,
-         behavior: "smooth"
-      });
+      // window.scrollTo({
+      //    left: 0,
+      //    top: document.body.scrollHeight,
+      //    behavior: "smooth"
+      // });
 
    }
 });
