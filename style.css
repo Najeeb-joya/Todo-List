@@ -7,10 +7,14 @@
 
 
 body{
+    min-height: 100vh;
     background-color: rgb(224, 80, 80);
-    overflow-y: overlay;
+    /* overflow-y: overlay; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
 }
-
 button{
     padding: 0.5rem;
     border-radius: 10px;
@@ -66,7 +70,7 @@ input[type ='checkbox']{
     width: 30%;
     min-width: 18rem;
     margin: 0 auto;
-    margin-top: 5rem;
+    margin-top: 10rem;
     border-radius: 0.8rem;
 }
 .tasks-lables{
@@ -194,11 +198,11 @@ label{
     margin-left: -0.2rem;
 }
 .footer{
-    
+    width:100%;
     height: 200px;
     background-color: black;
+    margin-top: auto;
     /* margin-top: 10.49rem; */
-    margin-top: 3rem;
     display: flex;
     justify-content: center;
 }
