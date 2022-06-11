@@ -82,6 +82,19 @@ const isComplete = (status, target) => {
    }
 }
 
+// Add Task to LocalStorage
+const addTaskToLocalStorage = (taskValue)=>{
+   const todos = {
+      title: taskValue,
+      isComplete: false
+   }
+   tasks_array.push(todos);
+   localStorage.setItem('tasks', JSON.stringify(tasks_array));
+   taskCount();
+}
+
+
+
 // onload event Lister to call add_task function when page is loaded 
 window.addEventListener('load', e => {
 
@@ -118,23 +131,8 @@ add_task_form.addEventListener('submit', e => {
    const task_input = document.querySelector('.task-input');
    if (task_input.value) { // check if input task has value
       add_task(task_input.value);
-      //   localStorage.setItem(localStorage.length.toString(), task_input.value); // save the inserted tasks on localhStorage
-      const todos = {
-         title: task_input.value,
-         isComplete: false
-      }
-      tasks_array.push(todos);
-      localStorage.setItem('tasks', JSON.stringify(tasks_array));
+      addTaskToLocalStorage(task_input.value);
       task_input.value = "";
-      taskCount();
-      // remain_tasks_num_inc_dec("inc");
-
-      // window.scrollTo({
-      //    left: 0,
-      //    top: document.body.scrollHeight,
-      //    behavior: "smooth"
-      // });
-
    }
 });
 
