@@ -136,19 +136,6 @@ add_task_form.addEventListener('submit', e => {
    }
 });
 
-// handle event listener of add task button
-// add_task_btn.addEventListener('click',e => {
-//     const task_input = document.querySelector('.task-input');
-//     if(task_input.value){ // check if input task has value
-//         add_task(task_input.value);
-//         task_input.value = "";
-//         tasks_num_inc_dec("inc");
-//         remain_tasks_num_inc_dec("inc");
-
-//     }
-
-// });
-
 
 // add event listener for Tasks Dive
 tasks.addEventListener('click', e => {
