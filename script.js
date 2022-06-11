@@ -20,9 +20,6 @@ let weatherContainer = document.querySelector('.weather');
 let weatherIcon = document.querySelector('.weather-icon1');
 let cityName = document.querySelector('.city');
 let temperature = document.querySelector('.temp-num');
-
-all_task_num.textContent = tasks_number;
-remain_task_num.textContent = remain_tasks_number;
 let tasks_array = [];
 
 
@@ -134,6 +131,7 @@ search_input.addEventListener('keyup', e => {
 add_task_form.addEventListener('submit', e => {
    e.preventDefault();
    const task_input = document.querySelector('.task-input');
+   let getLStasks = JSON.parse(localStorage.getItem('tasks'));
    if (task_input.value) { // check if input task has value
       add_task(task_input.value);
       addTaskToLocalStorage(task_input.value);
@@ -155,6 +153,9 @@ tasks.addEventListener('click', e => {
       localStorage.setItem('tasks', JSON.stringify(stored_tasks));
       taskCount();
       e.target.parentElement.remove();
+      if(tasks_array.length <= 3){
+         search_tasks.style.visibility = "hidden"
+      }
 
    }
 
