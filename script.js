@@ -218,15 +218,10 @@ const getQuote = () => {
 
             quote.textContent = "\"" + data.content + "\"";
             author.textContent = data.author;
-         } else {
-            quote.textContent = "\"" + localStorage.getItem('quote') + "\"";
-            author.textContent = localStorage.getItem('author');
          }
       })
       .catch(erro => {
-         console.log("Promise did not resolve");
-            quote.textContent = localStorage.getItem('quote');
-            author.textContent = localStorage.getItem('author');
+         console.log(" Quote Promise did not resolve" + erro);
       });
 };
 window.addEventListener('load', ()=>{
