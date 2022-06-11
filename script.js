@@ -97,9 +97,8 @@ const addTaskToLocalStorage = (taskValue)=>{
 
 
 
-// onload event Lister to call add_task function when page is loaded 
-window.addEventListener('load', e => {
-
+// renderTasksFromLs called when page load. this function render all task which are avialable on the local storage
+const renderTasksFromLS = ()=>{
    if (localStorage.getItem('tasks')) {
       tasks_array = JSON.parse(localStorage.getItem('tasks'));
       tasks_array.forEach(val => {
@@ -119,7 +118,7 @@ window.addEventListener('load', e => {
          taskCount();
       });
    }
-});
+};
 
 
 //event listener for searching task
@@ -131,7 +130,6 @@ search_input.addEventListener('keyup', e => {
 add_task_form.addEventListener('submit', e => {
    e.preventDefault();
    const task_input = document.querySelector('.task-input');
-   let getLStasks = JSON.parse(localStorage.getItem('tasks'));
    if (task_input.value) { // check if input task has value
       add_task(task_input.value);
       addTaskToLocalStorage(task_input.value);
@@ -228,10 +226,6 @@ const getQuote = () => {
          console.log(" Quote Promise did not resolve" + erro);
       });
 };
-window.addEventListener('load', ()=>{
-   getQuote();
-   getWeather();
-});
 
 setInterval(getQuote, 20000);
 
@@ -278,4 +272,13 @@ const getWeather =()=>{
    })
   }
 
-  getColor();
+// hadle onload event
+  window.addEventListener('load', ()=>{
+   renderTasksFromLS();
+   getColor();
+   getQuote();
+   getWeather();
+   if(tasks_array.length > 3){
+      search_tasks.style.visibility = "visible";
+   }
+});
