@@ -156,20 +156,15 @@ label{
     
    
 }
-/* .add-task-btn{
+.add-task-btn{
     
     margin-bottom: 0.6rem;
     border: none;
     width: 5rem;
     height: 2.7rem;
-    position:absolute;
-    right: 15.2%;
-    top:0;
     color: white;
     border-radius: 1rem;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-} */
+}
 
 .quotes{
     margin: 3rem auto;
