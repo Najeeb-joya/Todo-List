@@ -138,6 +138,9 @@ add_task_form.addEventListener('submit', e => {
       add_task(task_input.value);
       addTaskToLocalStorage(task_input.value);
       task_input.value = "";
+      if(tasks_array.length > 3){
+         search_tasks.style.visibility = "visible";
+      }
    }
 });
 
@@ -203,7 +206,7 @@ tasks.addEventListener('click', e => {
    }
 });
 
-
+// get a random quote from the API endpint
 const getQuote = () => {
    //const random = Math.round(Math.random() * 100);
    //fetch('https://type.fit/api/quotes')
