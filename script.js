@@ -16,6 +16,11 @@ let search_tasks = document.querySelector('.search-tasks');
 
 let search_input = document.querySelector('.search-input');
 
+let weatherContainer = document.querySelector('.weather');
+let weatherIcon = document.querySelector('.weather-icon1');
+let cityName = document.querySelector('.city');
+let temperature = document.querySelector('.temp-num');
+
 all_task_num.textContent = tasks_number;
 remain_task_num.textContent = remain_tasks_number;
 let tasks_array = [];
@@ -220,13 +225,8 @@ const getQuote = () => {
       })
       .catch(erro => {
          console.log("Promise did not resolve");
-         if (localStorage.length > 0) {
             quote.textContent = localStorage.getItem('quote');
             author.textContent = localStorage.getItem('author');
-         } else {
-            quote.textContent = "\"Nothing of value comes fast or easy; Drips of water can one day break a stone.\"";
-            author.textContent = "Unkonw";
-         }
       });
 };
 window.addEventListener('load', ()=>{
@@ -234,18 +234,11 @@ window.addEventListener('load', ()=>{
    getWeather();
 });
 
-quote.textContent = "\"" + localStorage.getItem('quote') + "\"";
-author.textContent = localStorage.getItem('author');
 setInterval(getQuote, 20000);
 
 
-
+// Fetch lon and lat and temperature and icon from openweathermap API
 const getWeather =()=>{
-   let weatherContainer = document.querySelector('.weather');
-   let weatherIcon = document.querySelector('.weather-icon1');
-   let cityName = document.querySelector('.city');
-   let temperature = document.querySelector('.temp-num');
-   //const apiKey = '264f9c460b468a22a8d50f93ebbd7275'; 
    const apiKey = "235e5901710717d10e54947b472fdd27";
    let lat, lon; 
    const city = "Kabul"
@@ -272,24 +265,7 @@ const getWeather =()=>{
    .catch(err =>{
       console.log("Promise did not resolve" + err);
    })
-
-
-   // fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
-   // .then(response =>{
-   //    return response.json();
-   // }).then(data =>{
-   //   // console.log(data.location.name);
-   //   console.log(data);
-   //   console.log(weatherIcon);
-   //   weatherIcon.setAttribute('src', data.current.weather_icons[0]);
-   //   cityName.textContent = data.location.name;
-   //   temperature.textContent = data.current.temperature;
-      
-   // })
-   // .catch(err => {
-   //    console.log(err);
-   // });
-  }
+  };
   
 
   const getColor = ()=>  {
