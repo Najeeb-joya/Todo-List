@@ -99,8 +99,8 @@ const addTaskToLocalStorage = (taskValue)=>{
 
 // renderTasksFromLs called when page load. this function render all task which are avialable on the local storage
 const renderTasksFromLS = ()=>{
+   tasks_array = JSON.parse(localStorage.getItem('tasks'));
    if (localStorage.getItem('tasks')) {
-      tasks_array = JSON.parse(localStorage.getItem('tasks'));
       tasks_array.forEach(val => {
 
 
@@ -130,13 +130,17 @@ search_input.addEventListener('keyup', e => {
 add_task_form.addEventListener('submit', e => {
    e.preventDefault();
    const task_input = document.querySelector('.task-input');
-   if (task_input.value) { // check if input task has value
+   if (task_input.value && remain_task_num.textContent <= 9) { // check if input task has value
       add_task(task_input.value);
       addTaskToLocalStorage(task_input.value);
       task_input.value = "";
       if(tasks_array.length > 3){
          search_tasks.style.visibility = "visible";
       }
+      console.log(tasks_array.length + " Length is ");
+   }else{
+      window.alert("You cannot have more than 10 tasks, please compelete your current tasks");
+      task_input.value = "";
    }
 });
 
