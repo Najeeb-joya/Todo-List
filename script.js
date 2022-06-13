@@ -266,6 +266,8 @@ const getWeather =()=>{
   
 
   const getColor = ()=>  {
+   let deleteButton = document.querySelectorAll('button');
+   console.log(deleteButton);
    let body = document.querySelector('body');
    const colorPicker = new iro.ColorPicker("#color-picker", {
       width:130, color:"#fff"
@@ -275,6 +277,9 @@ const getWeather =()=>{
       body.style.backgroundColor = color.hexString;
       search_input.style.borderColor=color.hexString;
       task_input.style.borderColor=color.hexString;
+      deleteButton.forEach(btn => {
+         btn.style.backgroundColor=color.hexString;
+      });
    })
   }
 
