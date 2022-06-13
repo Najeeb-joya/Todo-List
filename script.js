@@ -1,6 +1,7 @@
 const add_task_btn = document.querySelector('.add-task-btn');
 const add_task_form = document.querySelector('.add-tasks');
 const tasks = document.querySelector('.tasks');
+const task_input = document.querySelector('.task-input');
 
 let tasks_number = 0,
    remain_tasks_number = 0;
@@ -129,7 +130,6 @@ search_input.addEventListener('keyup', e => {
 
 add_task_form.addEventListener('submit', e => {
    e.preventDefault();
-   const task_input = document.querySelector('.task-input');
    if (task_input.value && remain_task_num.textContent <= 9) { // check if input task has value
       add_task(task_input.value);
       addTaskToLocalStorage(task_input.value);
@@ -273,6 +273,8 @@ const getWeather =()=>{
 
    colorPicker.on("color:change", function(color){
       body.style.backgroundColor = color.hexString;
+      search_input.style.borderColor=color.hexString;
+      task_input.style.borderColor=color.hexString;
    })
   }
 
