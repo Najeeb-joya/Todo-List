@@ -22,6 +22,7 @@ let weatherIcon = document.querySelector('.weather-icon1');
 let cityName = document.querySelector('.city');
 let temperature = document.querySelector('.temp-num');
 let tasks_array = [];
+let btnColor = '#e05050';
 
 
 // count the all tasks and remaining taks
@@ -48,7 +49,7 @@ const add_task = (task_value) => {
                 <input type="checkbox" class="check-value">
                 <label class = "label">${task_value}</label>
             </span>
-           <button class="task-delete">Delete</button>
+           <button class="task-delete" style="background-color:${btnColor}">Delete</button>
         </div>
     `;
    tasks.innerHTML += html;
@@ -280,6 +281,7 @@ const getWeather =()=>{
       deleteButton.forEach(btn => {
          btn.style.backgroundColor=color.hexString;
       });
+      btnColor = color.hexString;
    })
   }
 
